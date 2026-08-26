@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Universi 🌙</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090914;
+            color: #eeeafa;
+            font-family: Georgia, serif;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(#17132c, #090914);
+        }
+
+        .luna {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #d9c5ff;
+            font-size: 42px;
+            letter-spacing: 4px;
+        }
+
+        .subtitulo {
+            color: #a99ac4;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .buscador {
+            display: block;
+            width: 85%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 14px 20px;
+            border: 1px solid #70559e;
+            border-radius: 25px;
+            background: #121020;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .categorias {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 20px 35px;
+        }
+
+        .categoria {
+            background: #17142a;
+            color: #cdb8ef;
+            border: 1px solid #5c477e;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .categoria:hover {
+            background: #30234b;
+        }
+
+        .personajes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .tarjeta {
+            background: #141322;
+            border: 1px solid #49386a;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-6px);
+            border-color: #9c76d6;
+            box-shadow: 0 8px 30px #00000066;
+        }
+
+        .imagen-personaje {
+            height: 230px;
+            background: linear-gradient(135deg, #282040, #11101c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #817397;
+        }
+
+        .nombre {
+            color: #e0d0ff;
+            font-size: 21px;
+            padding: 15px 10px 5px;
+        }
+
+        .rol {
+            color: #9185a6;
+            font-size: 13px;
+            padding-bottom: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="luna">☾</div>
+        <h1>MI UNIVERSI</h1>
+        <p class="subtitulo">Archivo de personajes</p>
+    </header>
+
+    <input
+        class="buscador"
+        type="text"
+        placeholder="Buscar personaje..."
+    >
+
+    <nav class="categorias">
+        <button class="categoria">TODOS</button>
+        <button class="categoria">RAZAS</button>
+        <button class="categoria">MONTURAS</button>
+        <button class="categoria">RELACIONES</button>
+        <button class="categoria">NPC'S</button>
+    </nav>
+
+    <main class="personajes">
+
+        <article class="tarjeta">
+            <div class="imagen-personaje">
+                IMAGEN
+            </div>
+            <h2 class="nombre">Yue</h2>
+            <p class="rol">Personaje</p>
+        </article>
+
+        <article class="tarjeta">
+            <div class="imagen-personaje">
+                IMAGEN
+            </div>
+            <h2 class="nombre">Personaje 2</h2>
+            <p class="rol">Personaje</p>
+        </article>
+
+        <article class="tarjeta">
+            <div class="imagen-personaje">
+                IMAGEN
+            </div>
+            <h2 class="nombre">Personaje 3</h2>
+            <p class="rol">Personaje</p>
+        </article>
+
+    </main>
+
+</body>
+</html>
