@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #090914;
+    color: #eeeafa;
+    font-family: Georgia, serif;
+    min-height: 100vh;
+}
+
+/* ===== ENCABEZADO ===== */
+
+.encabezado {
+    text-align: center;
+    padding: 55px 20px 35px;
+    background:
+        radial-gradient(circle at center, #292044 0%, #17142b 35%, #090914 75%);
+    border-bottom: 1px solid #49386a;
+}
+
+.logo-luna {
+    font-size: 58px;
+    color: #d9c5ff;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px #9c76d6;
+}
+
+.titulo {
+    color: #dfcaff;
+    font-size: 44px;
+    letter-spacing: 5px;
+}
+
+.subtitulo {
+    color: #a99ac4;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* ===== BUSCADOR ===== */
+
+.contenedor-buscador {
+    padding: 30px 20px 15px;
+    background: #090914;
+}
+
+.buscador {
+    display: block;
+    width: 90%;
+    max-width: 650px;
+    margin: auto;
+    padding: 15px 22px;
+    border: 1px solid #70559e;
+    border-radius: 30px;
+    background: #121020;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+.buscador:focus {
+    border-color: #b99be8;
+    box-shadow: 0 0 15px #70559e55;
+}
+
+.buscador::placeholder {
+    color: #817397;
+}
+
+/* ===== CATEGORÍAS ===== */
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: #090914;
+}
+
+.categoria {
+    background: #17142a;
+    color: #cdb8ef;
+    border: 1px solid #5c477e;
+    padding: 11px 20px;
+    border-radius: 22px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    transition: 0.3s;
+}
+
+.categoria:hover {
+    background: #30234b;
+    border-color: #9c76d6;
+    transform: translateY(-2px);
+}
+
+/* ===== TARJETAS ===== */
+
+.personajes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding-bottom: 70px;
+}
+
+.tarjeta {
+    background: #141322;
+    border: 1px solid #49386a;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-7px);
+    border-color: #9c76d6;
+    box-shadow: 0 10px 30px #00000088;
+}
+
+.imagen-personaje {
+    height: 250px;
+    background:
+        linear-gradient(135deg, #282040, #11101c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #817397;
+    font-size: 14px;
+}
+
+.nombre {
+    color: #e0d0ff;
+    font-size: 22px;
+    padding: 16px 10px 5px;
+}
+
+.rol {
+    color: #9185a6;
+    font-size: 13px;
+    padding-bottom: 20px;
+}
