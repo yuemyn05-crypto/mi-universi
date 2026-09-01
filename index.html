@@ -111,6 +111,33 @@
         </article>
 
     </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "https://uuwowbesazxwyaklsxlj.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_mHDd4OWJdD-Td0fEANHAXg_HdUk73tU";
+
+    const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    async function cargarPersonajes() {
+        const { data, error } = await supabase
+            .from("personajes")
+            .select("*")
+            .order("id");
+
+        if (error) {
+            console.error("Error al cargar personajes:", error);
+            return;
+        }
+
+        console.log("Personajes encontrados:", data);
+    }
+
+    cargarPersonajes();
+</script>
 
 </body>
 </html>
