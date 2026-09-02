@@ -78,7 +78,7 @@
             .order("id");
 
         if (error) {
-            console.error("Error al cargar personajes:", error);
+           alert("Error de Supabase: " + error.message);
             return;
         }
 
