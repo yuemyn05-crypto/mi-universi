@@ -70,6 +70,8 @@
     );
 
     async function cargarPersonajes() {
+        console.log("1 - La función empezó");
+        
         const { data, error } = await supabase
             .from("personajes")
             .select("*")
