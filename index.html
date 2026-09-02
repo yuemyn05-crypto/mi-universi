@@ -6,7 +6,6 @@
 
     <title>Mi Universi 🌙</title>
 
-    <!-- Conecta este archivo con nuestro diseño -->
     <link rel="stylesheet" href="estilo.css">
 </head>
 
@@ -55,43 +54,84 @@
 
 
     <!-- PERSONAJES -->
- <main class="personajes" id="lista-personajes">
+    <main class="personajes" id="lista-personajes">
+    </main>
 
- </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-    alert("1. Supabase: " + typeof window.supabase);
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    const SUPABASE_URL = "https://uuwowbesazxwyaklsxlj.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_mHDd4OWJdD-Td0fEANHAXg_HdUk73tU";
+    <script>
 
-    const supabase = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+        const SUPABASE_URL = "https://uuwowbesazxwyaklsxlj.supabase.co";
 
-    alert("2. Cliente creado");
+        const SUPABASE_KEY = "sb_publishable_mHDd4OWJdD-Td0fEANHAXg_HdUk73tU";
 
-    async function cargarPersonajes() {
 
-        alert("3. Intentando cargar personajes");
+        const supabase = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-        const { data, error } = await supabase
-            .from("personajes")
-            .select("*");
 
-        if (error) {
-            alert("4. ERROR: " + error.message);
-            return;
+        async function cargarPersonajes() {
+
+            const { data, error } = await supabase
+                .from("personajes")
+                .select("*")
+                .order("id");
+
+
+            if (error) {
+
+                console.error("Error de Supabase:", error);
+
+                document.getElementById("lista-personajes").innerHTML =
+                    "<p>No se pudieron cargar los personajes.</p>";
+
+                return;
+            }
+
+
+            const lista = document.getElementById("lista-personajes");
+
+            lista.innerHTML = "";
+
+
+            data.forEach(personaje => {
+
+                const tarjeta = document.createElement("article");
+
+                tarjeta.className = "tarjeta";
+
+
+                tarjeta.innerHTML = `
+
+                    <div class="imagen-personaje">
+                        IMAGEN
+                    </div>
+
+                    <h2 class="nombre">
+                        ${personaje.name || "Sin nombre"}
+                    </h2>
+
+                    <p class="rol">
+                        ${personaje.alias || "Personaje"}
+                    </p>
+
+                `;
+
+
+                lista.appendChild(tarjeta);
+
+            });
+
         }
 
-        alert("5. Personajes encontrados: " + data.length);
 
-        console.log(data);
-    }
+        cargarPersonajes();
 
-    cargarPersonajes();
-</script>
+    </script>
+
 </body>
 </html>
