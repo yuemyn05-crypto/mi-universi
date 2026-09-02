@@ -56,57 +56,7 @@
 
     <!-- PERSONAJES -->
     <main class="personajes">
-
-        <!-- TARJETA 1 -->
-        <article class="tarjeta">
-
-            <div class="imagen-personaje">
-                IMAGEN
-            </div>
-
-            <h2 class="nombre">
-                Yue
-            </h2>
-
-            <p class="rol">
-                Personaje
-            </p>
-
-        </article>
-
-
-        <!-- TARJETA 2 -->
-        <article class="tarjeta">
-
-            <div class="imagen-personaje">
-                IMAGEN
-            </div>
-
-            <h2 class="nombre">
-                Personaje 2
-            </h2>
-
-            <p class="rol">
-                Personaje
-            </p>
-
-        </article>
-
-
-        <!-- TARJETA 3 -->
-        <article class="tarjeta">
-
-            <div class="imagen-personaje">
-                IMAGEN
-            </div>
-
-            <h2 class="nombre">
-                Personaje 3
-            </h2>
-
-            <p class="rol">
-                Personaje
-            </p>
+        
 
         </article>
 
@@ -133,7 +83,22 @@
             return;
         }
 
-        console.log("Personajes encontrados:", data);
+        const lista = document.getElementById("lista-personajes");
+
+lista.innerHTML = "";
+
+data.forEach(personaje => {
+  const tarjeta = document.createElement("article");
+  tarjeta.className = "tarjeta";
+
+  tarjeta.innerHTML = `
+    <div class="imagen-personaje">IMAGEN</div>
+    <h2 class="nombre">${personaje.name || "Sin nombre"}</h2>
+    <p class="rol">${personaje.alias || "Personaje"}</p>
+  `;
+
+  lista.appendChild(tarjeta);
+});
     }
 
     cargarPersonajes();
