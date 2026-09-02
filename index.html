@@ -53,85 +53,137 @@
     </nav>
 
 
-    <!-- PERSONAJES -->
-    <main class="personajes" id="lista-personajes">
-    </main>
+<!-- PERSONAJES -->
+<main class="personajes" id="lista-personajes">
+</main>
 
 
-    <!-- SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- CONEXIÓN CON SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script>
+<script>
 
-        const SUPABASE_URL = "https://uuwowbesazxwyaklsxlj.supabase.co";
+    // Datos de nuestro proyecto
+    const SUPABASE_URL =
+        "https://uuwowbesazxwyaklsxlj.supabase.co";
 
-        const SUPABASE_KEY = "sb_publishable_mHDd4OWJdD-Td0fEANHAXg_HdUk73tU";
-
-
-        const supabase = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
+    const SUPABASE_KEY =
+        "sb_publishable_mHDd4OWJdD-Td0fEANHAXg_HdUk73tU";
 
 
-        async function cargarPersonajes() {
-
-            const { data, error } = await supabase
-                .from("personajes")
-                .select("*")
-                .order("id");
-
-
-            if (error) {
-
-                console.error("Error de Supabase:", error);
-
-                document.getElementById("lista-personajes").innerHTML =
-                    "<p>No se pudieron cargar los personajes.</p>";
-
-                return;
-            }
+    // Creamos la conexión
+    const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-            const lista = document.getElementById("lista-personajes");
+    // Cargar personajes
+    async function cargarPersonajes() {
 
-            lista.innerHTML = "";
-
-
-            data.forEach(personaje => {
-
-                const tarjeta = document.createElement("article");
-
-                tarjeta.className = "tarjeta";
+        const lista =
+            document.getElementById("lista-personajes");
 
 
-                tarjeta.innerHTML = `
-
-                    <div class="imagen-personaje">
-                        IMAGEN
-                    </div>
-
-                    <h2 class="nombre">
-                        ${personaje.name || "Sin nombre"}
-                    </h2>
-
-                    <p class="rol">
-                        ${personaje.alias || "Personaje"}
-                    </p>
-
-                `;
+        // Mensaje mientras carga
+        lista.innerHTML =
+            "<p>Cargando personajes... 🌙</p>";
 
 
-                lista.appendChild(tarjeta);
+        // Pedimos los personajes a Supabase
+        const { data, error } = await supabase
+            .from("personajes")
+            .select("*")
+            .order("id", { ascending: true });
 
-            });
 
+        // Si ocurre un error
+        if (error) {
+
+            console.error(error);
+
+            lista.innerHTML =
+                "<p>No se pudieron cargar los personajes 😭</p>";
+
+            return;
         }
 
 
-        cargarPersonajes();
+        // Si la tabla está vacía
+        if (!data || data.length === 0) {
 
-    </script>
+            lista.innerHTML =
+                "<p>Todavía no hay personajes 🌙</p>";
+
+            return;
+        }
+
+
+        // Limpiamos el mensaje de carga
+        lista.innerHTML = "";
+
+
+        // Crear una tarjeta por personaje
+        data.forEach(personaje => {
+
+            const tarjeta =
+                document.createElement("article");
+
+            tarjeta.className = "tarjeta";
+
+
+            // Imagen
+            let imagen = "";
+
+            if (personaje.image_url) {
+
+                imagen = `
+                    <img
+                        src="${personaje.image_url}"
+                        alt="${personaje.name || "Personaje"}"
+                        style="
+                            width:100%;
+                            height:100%;
+                            object-fit:cover;
+                        "
+                    >
+                `;
+
+            } else {
+
+                imagen = "IMAGEN";
+
+            }
+
+
+            tarjeta.innerHTML = `
+
+                <div class="imagen-personaje">
+                    ${imagen}
+                </div>
+
+                <h2 class="nombre">
+                    ${personaje.name || "Sin nombre"}
+                </h2>
+
+                <p class="rol">
+                    ${personaje.alias || "Personaje"}
+                </p>
+
+            `;
+
+
+            lista.appendChild(tarjeta);
+
+        });
+
+    }
+
+
+    // Ejecutar
+    cargarPersonajes();
+
+</script>
 
 </body>
 </html>
